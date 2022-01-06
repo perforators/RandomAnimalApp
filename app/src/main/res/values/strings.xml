@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">GameThrones</string>
+    <string name="title_homes">Homes</string>
+    <string name="title_characters">Characters</string>
+    <string name="title_books">Books</string>
+</resources>
