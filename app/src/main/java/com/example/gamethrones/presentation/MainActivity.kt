@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.getRandomAnimal()
     }
 
     private fun showAnimalInfo(animal: Animal) {

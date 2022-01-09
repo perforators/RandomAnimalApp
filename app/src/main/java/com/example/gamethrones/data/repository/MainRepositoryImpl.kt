@@ -19,7 +19,8 @@ class MainRepositoryImpl(
 
         try {
             val animalDto = api.getRandomAnimal()
-            val animal = animalDto.toAnimal(dao.isAnimalExists(animalDto.name))
+            val isFavorite = dao.isAnimalExists(animalDto.name)
+            val animal = animalDto.toAnimal(isFavorite)
             emit(Resource.Success(animal))
         } catch(e: HttpException) {
             emit(Resource.Error(
