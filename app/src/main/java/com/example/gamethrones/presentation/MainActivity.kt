@@ -5,9 +5,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.gamethrones.databinding.ActivityMainBinding
-import com.example.gamethrones.domain.model.AnimalInfo
+import com.example.gamethrones.domain.model.Animal
+import com.example.gamethrones.util.loadImage
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -28,32 +33,25 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 when(state) {
-                    is ScreenState.Success -> {
-                        render(state.result)
-                    }
+                    is ScreenState.Success -> showAnimalInfo(state.result)
 
-                    else -> {
-                        render(AnimalInfo(
-                            "E",
-                            "G",
-                            "O",
-                            "R",
-                            "f"
-                        ))
-                    }
+                    is ScreenState.Failure -> {}
+
+                    is ScreenState.Init -> {}
+
+                    is ScreenState.Loading -> {}
                 }
             }
         }
     }
 
-    private fun render(animalInfo: AnimalInfo?) {
-        animalInfo?.let { info ->
-            binding.apply {
-                name.text = info.name
-                animalType.text = info.animal_type
-                diet.text = info.diet
-                habitat.text = info.habitat
-            }
+    private fun showAnimalInfo(animal: Animal) {
+        binding.apply {
+            imageView.loadImage(animal.imageLink, baseContext)
+            name.text = animal.name
+            animalType.text = animal.animalType
+            diet.text = animal.diet
+            habitat.text = animal.habitat
         }
     }
 }

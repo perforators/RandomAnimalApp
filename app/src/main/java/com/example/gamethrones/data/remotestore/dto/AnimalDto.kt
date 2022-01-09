@@ -1,8 +1,8 @@
 package com.example.gamethrones.data.remotestore.dto
 
-import com.example.gamethrones.domain.model.AnimalInfo
+import com.example.gamethrones.domain.model.Animal
 
-data class AnimalInfoDto(
+data class AnimalDto(
     val active_time: String,
     val animal_type: String,
     val diet: String,
@@ -19,13 +19,14 @@ data class AnimalInfoDto(
     val weight_min: String
 ) {
 
-    fun toAnimalInfo(): AnimalInfo {
-        return AnimalInfo(
+    fun toAnimal(isFavorite: Boolean = false): Animal {
+        return Animal(
             name = name,
-            animal_type = animal_type,
+            animalType = animal_type,
             diet = diet,
             habitat = habitat,
-            image_link = image_link
+            imageLink = image_link,
+            isFavorite = isFavorite
         )
     }
 }
