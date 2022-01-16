@@ -1,8 +1,8 @@
-package com.example.gamethrones.data.localstore
+package com.example.gamethrones.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.gamethrones.data.localstore.entity.FavoriteAnimal
+import com.example.gamethrones.data.local.entity.FavoriteAnimal
 
 @Database(entities = [FavoriteAnimal::class], version = 1)
 abstract class FavoriteAnimalDatabase: RoomDatabase() {

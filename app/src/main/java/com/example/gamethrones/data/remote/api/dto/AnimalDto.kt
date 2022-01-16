@@ -1,5 +1,6 @@
-package com.example.gamethrones.data.remotestore.dto
+package com.example.gamethrones.data.remote.api.dto
 
+import android.graphics.Bitmap
 import com.example.gamethrones.domain.model.Animal
 
 data class AnimalDto(
@@ -19,13 +20,13 @@ data class AnimalDto(
     val weight_min: String
 ) {
 
-    fun toAnimal(isFavorite: Boolean = false): Animal {
+    fun toAnimal(isFavorite: Boolean, imageBitmap: Bitmap): Animal {
         return Animal(
             name = name,
             animalType = animal_type,
             diet = diet,
             habitat = habitat,
-            imageLink = image_link,
+            imageBitmap = imageBitmap,
             isFavorite = isFavorite
         )
     }

@@ -1,6 +1,6 @@
-package com.example.gamethrones.data.remotestore
+package com.example.gamethrones.data.remote.api
 
-import com.example.gamethrones.data.remotestore.dto.AnimalDto
+import com.example.gamethrones.data.remote.api.dto.AnimalDto
 import retrofit2.http.GET
 
 interface RandomAnimalAPI {

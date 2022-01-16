@@ -1,18 +1,15 @@
 package com.example.gamethrones.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.gamethrones.databinding.ActivityMainBinding
 import com.example.gamethrones.domain.model.Animal
-import com.example.gamethrones.util.loadImage
-import com.squareup.picasso.Picasso
+import com.example.gamethrones.util.resize
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -33,13 +30,24 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 when(state) {
-                    is ScreenState.Success -> showAnimalInfo(state.result)
+                    is AnimalViewState.AnimalLoaded -> {
+                        showAnimalInfo(state.result)
+                        hideProgressBar()
+                    }
 
-                    is ScreenState.Failure -> {}
+                    is AnimalViewState.Failure -> {
+                        showErrorText(state.message)
+                        hideProgressBar()
+                    }
 
-                    is ScreenState.Init -> {}
+                    is AnimalViewState.Default -> {
+                        showAnimalInfo(Animal.EMPTY)
+                    }
 
-                    is ScreenState.Loading -> {}
+                    is AnimalViewState.Loading -> {
+                        hideErrorText()
+                        showProgressBar()
+                    }
                 }
             }
         }
@@ -49,11 +57,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun showAnimalInfo(animal: Animal) {
         binding.apply {
-            imageView.loadImage(animal.imageLink, baseContext)
+            imageView.setImageBitmap(animal.imageBitmap?.resize(IMAGE_WIDTH, IMAGE_HEIGHT))
             name.text = animal.name
             animalType.text = animal.animalType
             diet.text = animal.diet
             habitat.text = animal.habitat
         }
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+    }
+
+    private fun showErrorText(message: String) {
+        binding.errorView.apply {
+            visibility = View.VISIBLE
+            text = message
+        }
+    }
+
+    private fun hideErrorText() {
+        binding.errorView.apply {
+            visibility = View.GONE
+            text = ""
+        }
+    }
+
+    companion object {
+        private const val IMAGE_WIDTH = 900
+        private const val IMAGE_HEIGHT = 800
     }
 }

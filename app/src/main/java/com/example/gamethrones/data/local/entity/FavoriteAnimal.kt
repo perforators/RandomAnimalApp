@@ -1,4 +1,4 @@
-package com.example.gamethrones.data.localstore.entity
+package com.example.gamethrones.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

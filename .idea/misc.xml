@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sfsdf/AndroidStudioProjects/GameThrones/app/src/main/res/drawable/animeted_roted.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/sfsdf/AndroidStudioProjects/GameThrones/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/sfsdf/AndroidStudioProjects/GameThrones/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/sfsdf/AndroidStudioProjects/GameThrones/app/src/main/res/layout/fragment_dashboard.xml" value="0.10054347826086957" />
         <entry key="..\:/Users/sfsdf/AndroidStudioProjects/GameThrones/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />

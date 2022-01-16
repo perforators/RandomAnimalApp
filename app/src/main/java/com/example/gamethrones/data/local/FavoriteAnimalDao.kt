@@ -1,4 +1,4 @@
-package com.example.gamethrones.data.localstore
+package com.example.gamethrones.data.local
 
 import androidx.room.Dao
 import androidx.room.Query

@@ -1,3 +1,3 @@
 package com.example.gamethrones.util
 
-const val dbName = "favorite_animal_database"
+const val DB_NAME = "favorite_animal_database"
